@@ -1,0 +1,33 @@
+﻿@model UserViewModel
+
+@using (Html.BeginForm("Register", "Auth", FormMethod.Post))
+{
+    <div>
+        <div>
+            Login
+            @Html.TextBoxFor(model => model.Login)
+            @Html.ValidationMessageFor(x=>x.Login)
+            <span class="checkResult"></span>
+        </div>
+        <div>
+            Password
+            @Html.TextBoxFor(model => model.Password)
+            @Html.ValidationMessageFor(x=>x.Password)
+        </div>
+        <div>
+            Имя пользователя
+            @Html.TextBoxFor(model => model.UserName)
+            @Html.ValidationMessageFor(x=>x.UserName)
+        </div>
+        <div>
+            E-mail
+            @Html.TextBoxFor(model => model.Email)
+            @Html.ValidationMessageFor(x=>x.Email)
+        </div>
+
+        <div>
+            <input type="submit" value="Регистрация" />
+            <span class="checkResult"></span>
+        </div>
+    </div>
+}
