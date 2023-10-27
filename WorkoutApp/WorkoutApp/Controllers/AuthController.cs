@@ -50,7 +50,7 @@ namespace WorkoutApp.Controllers
         [HttpPost]
         public IActionResult Register(UserViewModel viewModel)
         {
-            _authService.SaveUser(viewModel);
+            _authService.RegisterUser(viewModel);
             return View();
         }
 

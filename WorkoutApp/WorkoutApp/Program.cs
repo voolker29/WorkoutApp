@@ -1,3 +1,5 @@
+using BusinessLayer;
+using BusinessLayerInterfaces;
 using DALEF;
 using DALEF.Repositories;
 using DALInterfaces.Models;
@@ -19,6 +21,8 @@ builder.Services
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 builder.Services.AddHttpContextAccessor();
 

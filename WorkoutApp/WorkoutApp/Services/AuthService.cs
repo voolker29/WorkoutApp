@@ -1,25 +1,40 @@
-﻿using DALInterfaces.Models;
-using DALInterfaces.Repositories;
+﻿using BusinessLayerInterfaces;
+using BusinessLayerInterfaces.BusinessModels;
 using WorkoutApp.Models;
 
 namespace WorkoutApp.Services
 {
     public class AuthService : IAuthService
     {
-        private IUserRepository _userRepository;
-		private IHttpContextAccessor _httpContextAccessor;
-        public AuthService(IUserRepository userRepository, IHttpContextAccessor httpContextAccessor) 
+        private IUserService _userService;
+        private IHttpContextAccessor _httpContextAccessor;
+        public AuthService(IUserService userService, IHttpContextAccessor httpContextAccessor)
         {
-          _httpContextAccessor = httpContextAccessor;
-            _userRepository = userRepository;
+            _httpContextAccessor = httpContextAccessor;
+            _userService = userService;
         }
         public UserViewModel GetCurrentUser()
         {
             var idStr = GetIdStr();
             var id = int.Parse(idStr);
-            var user = _userRepository.Get(id);
+            var user = _userService.Get(id);
 
-            return new UserViewModel { Email = user.Email,Login = user.Login,UserName = user.UserName };
+            return new UserViewModel { Email = user.Email, Login = user.Login, UserName = user.UserName };
+        }
+
+        public int? GetUserIdByNameAndPassword(string userName, string password)
+        =>    _userService.GetUserIdByNameAndPassword(userName, password);
+
+        public void RegisterUser(UserViewModel userViewModel)
+        {
+            _userService.Save(new UserBLM 
+            { 
+                Email = userViewModel.Email, 
+                Login = userViewModel.Login, 
+                Password = userViewModel.Password, 
+                UserName = userViewModel.UserName 
+            });
+            
         }
 
         private string GetIdStr()
@@ -30,20 +45,6 @@ namespace WorkoutApp.Services
                 .Claims
                 .First(x => x.Type == "Id")
                 .Value;
-        }
-        public void SaveUser(UserViewModel userViewModel)
-        {
-            _userRepository.Save(new User
-            {
-                Email = userViewModel.Email,
-                Login = userViewModel.Login,
-                Password = userViewModel.Password,
-                UserName = userViewModel.UserName
-            });        
-        }
-        public int? GetUserIdByNameAndPassword(string userName, string password)
-        {
-            return _userRepository.GetUserIdByNameAndPassword(userName, password);
         }
     }
 }

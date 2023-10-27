@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DALEF
 {
-    public class WebContext:DbContext
+    public class WebContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 
