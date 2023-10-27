@@ -38,7 +38,12 @@ namespace WorkoutApp.Controllers
             }
 
             AuthOnServer(userId.ToString());
-            return View();
+            return RedirectToAction("Index", "Home");
+        }
+        public IActionResult LogOut()
+        {
+            HttpContext.SignOutAsync().Wait();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
