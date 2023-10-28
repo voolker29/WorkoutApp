@@ -23,16 +23,16 @@ namespace BusinessLayer
             _userRepository.Remove(id);
         }
 
-        public void Save(UserBLM user)
+        public void Save(UserBlm user)
         {
             _userRepository.Save(MapUserBlmToUser(user));
         }
 
-        public UserBLM Get(int id)
+        public UserBlm Get(int id)
         => MapUserToUserBLM(_userRepository.Get(id));
 
-        public UserBLM MapUserToUserBLM(User user)
-        => new UserBLM
+        public UserBlm MapUserToUserBLM(UserModel user)
+        => new UserBlm
         {
             Email = user.Email,
             Id = user.Id,
@@ -41,8 +41,8 @@ namespace BusinessLayer
             UserName = user.UserName
         };
 
-        public User MapUserBlmToUser(UserBLM userBLM)
-        => new User
+        public UserModel MapUserBlmToUser(UserBlm userBLM)
+        => new UserModel
         {
             Email = userBLM.Email,
             Id = userBLM.Id,

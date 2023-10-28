@@ -27,7 +27,7 @@ namespace WorkoutApp.Services
 
         public void RegisterUser(UserViewModel userViewModel)
         {
-            _userService.Save(new UserBLM 
+            _userService.Save(new UserBlm
             { 
                 Email = userViewModel.Email, 
                 Login = userViewModel.Login, 

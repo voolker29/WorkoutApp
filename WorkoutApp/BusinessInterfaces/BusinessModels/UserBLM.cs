@@ -1,6 +1,6 @@
 ﻿namespace BusinessLayerInterfaces.BusinessModels
 {
-    public class UserBLM
+    public class UserBlm
     {
         public int Id { get; set; }
         public string UserName { get; set; }

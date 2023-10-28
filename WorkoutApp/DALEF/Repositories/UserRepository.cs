@@ -3,7 +3,7 @@ using DALInterfaces.Repositories;
 
 namespace DALEF.Repositories
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository : BaseRepository<UserModel>, IUserRepository
     {
         public UserRepository(WebContext context) : base(context) { }
 

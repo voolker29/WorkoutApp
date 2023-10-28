@@ -6,8 +6,8 @@ namespace BusinessLayerInterfaces
     public interface IUserService
     {
         int? GetUserIdByNameAndPassword(string userName, string password);
-        void Save(UserBLM user);
+        void Save(UserBlm user);
         void Remove(int id);
-        UserBLM Get(int id);
+        UserBlm Get(int id);
     }
 }
